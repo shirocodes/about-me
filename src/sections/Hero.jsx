@@ -66,7 +66,7 @@ const Hero = () => {
             </header>
 
             {/* Right side - 3D thing */}
-            <figure className='hero-3d-layout border-red-200 border-2'>
+            <figure className='hero-3d-layout'>
                 <div className='h-full w-full'>
                     <HeroAnimation />
                 </div>   
