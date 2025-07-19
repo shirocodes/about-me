@@ -38,11 +38,11 @@ const Hero = () => {
                             <span className='wrapper'>
                                 {words.map((word) =>(
                                     <span key={word.text} 
-                                        className='flex items-center md:gap-3 gap-1 pb-2'
+                                        className='flex items-center md:gap-2 gap-1 pb-2'
                                     >
                                         <img
                                             src={word.imgPath} alt={word.text}
-                                            className='xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50'
+                                            className='xl:size-10 md:size-8 size-4 md:p-2 p-1 rounded-full bg-white-50'
                                         />
                                         <span>{word.text}</span>
                                     </span>
@@ -73,6 +73,7 @@ const Hero = () => {
             </figure>
         </div>
         <AnimatedCounter />
+        
     </section>
   )
 }

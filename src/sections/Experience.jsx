@@ -26,7 +26,7 @@ const Experience = () => {
             })
         })  
         
-        gsap.to('timeline', {
+        gsap.to('.timeline', {
             transformOrigin: 'bottom bottom',
             ease: 'power1.inOut',
             scrollTrigger: {
@@ -84,7 +84,7 @@ const Experience = () => {
                                         <div className='gradient-line w-1 h-full'/>
                                     </div>
 
-                                    <div className='expText flex xl:gap-15 md:gap-7 gap-3 relative z-20'>
+                                    <div className='expText flex xl:gap-8 md:gap-4 gap-2 relative z-20'>
                                         <div className='timeline-logo'>
                                             <img src={card.logoPath} alt='logo'/>
                                         </div>
