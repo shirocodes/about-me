@@ -147,45 +147,55 @@ const techStackIcons = [
 
 const expCards = [
   {
-    review:
-      "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+    summary:
+      "This role sparked my transition into software development as I worked closely with engineers and led projects from idea to delivery.",
+    logoPath: "/images/logo.png",
+    title: "Freelance Technical Project Manager",
+    date: "Feb 2022 - Mar 2024",
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Managed 5-7-person dev teams and delivered 98% of projects on time.",
+      "Introduced Agile sprints and syncs, improving team efficiency by 15%.",
+      "Transformed client ideas into actionable technical roadmaps.",
     ],
   },
   {
-    review:
-      "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-    imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+    summary:
+      "This role built my foundation in breaking down complex topics — a skill I now use in dev writing and documentation.",
+    logoPath: "/images/logo.png",
+    title: "Freelance Technical Writer & Research Consultant",
+    date: "Feb 2020 - Feb 2022",
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      "Authored 10+ technical reports monthly and 8+ startup proposals.",
+      "Designed interactive visuals to simplify complex findings.",
+      "Specialized in turning abstract ideas into structured, clear content.",
     ],
   },
   {
-    review:
-      "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+    summary:
+      "Leading this collaborative Python project allowed me to apply Agile practices and hands-on backend dev work in a fun, team-driven setting.",
+    logoPath: "/images/logo.png",
+    title: "Scrum Lead & Backend Dev - Monster Battle CLI Game",
+    date: "2024",
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Led a dev team using Agile sprints and daily standups.",
+      "Built game logic and database models using SQLAlchemy.",
+      "Facilitated retrospectives and improved team collaboration.",
+    ],
+  },
+  {
+    summary:
+      "This project deepened my understanding of user behavior and helped me create software that empowers people to be intentional with their time.",
+    logoPath: "/images/logo.png",
+    title: "Full Stack Developer - Aligna (Productivity App)",
+    date: "2024",
+    responsibilities: [
+      "Built frontend with React and backend using Flask + SQLAlchemy.",
+      "Designed features to link goals with live meeting sessions.",
+      "Implemented authentication and database schema design.",
     ],
   },
 ];
+
 
 const expLogos = [
   {
