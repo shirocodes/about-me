@@ -10,11 +10,7 @@ const navLinks = [
   {
     name: "Skills",
     link: "#skills",
-  },
-  {
-    name: "Testimonials",
-    link: "#testimonials",
-  },
+  }
 ];
 
 const words = [
@@ -259,25 +255,20 @@ const testimonials = [
 
 const socialImgs = [
   {
-    name: "insta",
-    url: "https://www.instagram.com/",
-    imgPath: "/images/insta.png",
-  },
-  {
-    name: "fb",
-    url: "https://www.facebook.com/",
-    imgPath: "/images/fb.png",
-  },
-  {
-    name: "x",
-    url: "https://www.x.com/",
-    imgPath: "/images/x.png",
+    name: "GitHub",
+    url: "https://github.com/shirocodes/practice-",
+    imgPath: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
   },
   {
     name: "linkedin",
-    url: "https://www.linkedin.com/",
+    url: "www.linkedin.com/in/wanjiru-muchiri",
     imgPath: "/images/linkedin.png",
   },
+  {
+    name: "Dev.to",
+    url: "https://dev.to/wanjiru_muchiri/when-letting-go-control-meant-react-taking-over-a-lesson-on-agile-and-development-3ik3", 
+    imgPath: "/images/dev.png"
+  }
 ];
 
 export {

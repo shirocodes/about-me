@@ -298,28 +298,32 @@ section {
   }
 
   .footer {
-    @apply my-10 md:mt-20 mt-10 text-white-50 px-5 md:px-20 xl:px-20 flex items-center justify-center;
+  @apply my-5 text-white-50 px-5 md:px-20 xl:px-20
+    
+  ;
 
-    .footer-container {
-      @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 w-full;
+  .footer-container {
+    @apply flex flex-row flex-wrap justify-between items-center w-full gap-y-4 gap-x-6 
+      backdrop-blur-md bg-black/20 border-t border-white/10;
+  }
+
+  p {
+    @apply text-sm text-center md:text-right;
+  }
+
+  .socials {
+    @apply flex items-center justify-center gap-4;
+
+    .icon {
+      @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
     }
 
-    p {
-      @apply text-center md:text-start;
-    }
-
-    .socials {
-      @apply flex items-center justify-center gap-5;
-
-      .icon {
-        @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
-      }
-
-      img {
-        @apply inline-block;
-      }
+    img {
+      @apply w-5 h-5;
     }
   }
+}
+
 }
 
 /* Hero text slider starts */

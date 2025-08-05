@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar"
 import Experience from "./sections/Experience"
 import TechStack from "./sections/TechStack"
 import Contacts from "./sections/Contacts"
+import Footer from "./sections/Footer"
 const App = () => {
 
   return (
@@ -15,6 +16,7 @@ const App = () => {
     <Experience />
     <TechStack />
     <Contacts />
+    <Footer />
    </>
   )
 }
