@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react'
 import Heading from '../components/Heading'
-
 import emailjs from '@emailjs/browser'
 import {motion, AnimatePresence} from 'framer-motion'
+import Lottie from 'lottie-react'
+import PartticlesBackground from '../components/ParticlesBackgrnd.jsx'
+
 
 const Contacts = () => {
   const formRef = useRef(null)
@@ -51,18 +53,21 @@ const Contacts = () => {
   }
 
   return ( 
-    <section id='contact' className='flex-center section-padding'>
-      <div className='w-full h-full md:px-10 px-5'>
+    <section id='contact' className='relative w-full min-h-screen flex items-center justify-center bg-black text-white overflow-hidden'>
+      <PartticlesBackground/>
+      <div className='z-10 w-full max-w-xl px-5'>
         <Heading 
           title="Get in touch with me"
-          sub='Contact info.'
+          // sub='Contact info.'
         />
 
-        <div className='mt-16 grid-12-cols'>
-          {/* contact form left side */}
-          <div className='xl:col-span-5 backdrop-blur-md rounded-xl shadow-lg'>
-            <div className='flex-center card-border rounded-xl p-10'>
-              <form onSubmit={handleSubmit} className='w-full flex flex-col gap-7' ref={formRef}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mt-10 backdrop-blur-lg bg-white/10 rounded-xl shadow-xl p-8"
+        >
+          <form onSubmit={handleSubmit} className='w-full flex flex-col gap-7' ref={formRef}>
                 <div>
                   <label htmlFor="name" className="text-sm font-medium">Name</label>
                   <input 
@@ -111,29 +116,20 @@ const Contacts = () => {
                     </div>
                   </div>
                 </button>
-              </form>
-              <AnimatePresence>
-                {showSuccess && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="text-green-600 font-semibold text-center mt-4"
-                  >
-                    Message sent successfully!✅
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            
-          </div>
-          {/* 3d experience right side */}
-          <div className='xl:col-span-7 min-h-96'>
-            <div className='w-full h-full '>
-              {/* <ContactExperience /> */}
-            </div>
-          </div>
-        </div>
+                <AnimatePresence>
+                  {showSuccess && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="text-green-600 font-semibold text-center mt-4"
+                    >
+                      Message sent successfully!✅
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+          </form>
+        </motion.div>
       </div>
     </section>
   )
