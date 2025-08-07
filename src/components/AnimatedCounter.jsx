@@ -4,19 +4,25 @@ import CountUp from 'react-countup'
 
 const AnimatedCounter = () => {
   return (
-    <div id='counter' className='padding-x-lg xl:mt-0 mt-15'>
+    <div id='counter' className='padding-x-lg xl:mt-0 mt-0'>
       <div className='mx-auto grid-4-cols'>
         {counterItems.map((item) => (
           
           <div 
             key={item.label} 
-            className='bg-zinc-900 rounded-lg p-10 flex flex-col justify-between'
+            className='bg-zinc-900 backdrop-blur-md rounded-lg px-2 py-2 sm:px-4 sm:py-5 text-center'
           >
-            <div className='counter-number text-white text-4xl font-bold mb-2'>
-            <CountUp suffix={item.suffix} end={item.value}/>
+            <div className='counter-number text-white opacity-80 text-2xl font-bold mb-2'>
+            <CountUp 
+              suffix={item.suffix} 
+              end={item.value}
+              duration={2}
+              enableScrollSpy
+              scrollSpyDelay={100}
+              />
             </div>
 
-            <div className='text-white-50 text-lg opacity-80'>
+            <div className='text-white text-lg opacity-50'>
               {item.label}
             </div>
           </div>
