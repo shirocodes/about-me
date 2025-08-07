@@ -35,7 +35,7 @@ const Hero = () => {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 1,
+          duration: 1.2,
           ease: 'power3.out',
           stagger: { each: 0.05, from: 'start' }
         },
@@ -102,7 +102,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
+    <>
+      <section
       id='hero'
       className='relative h-screen w-screen overflow-hidden'
       ref={containerRef}
@@ -123,7 +124,7 @@ const Hero = () => {
         <div className="headline text-white font-bold leading-snug sm:leading-tight">
           
           {/* Line 1 */}
-          <div className="line line-1 text-lg sm:text-3xl md:text-4xl text-left trail-shadow-1">
+          <div className="line line-1 text-lg sm:text-4xl md:text-5xl text-left trail-shadow-1">
             {'A Software Developer'.split(' ').map((word, i) => (
               <span key={i} className="char inline-block opacity-0 mr-1 whitespace-nowrap">
                 {word}
@@ -132,7 +133,7 @@ const Hero = () => {
           </div>
 
           {/* Line 2 */}
-          <div className="line line-2 text-base sm:text-2xl md:text-3xl mt-4 text-left trail-shadow-2">
+          <div className="line line-2 text-base sm:text-3xl md:text-4xl mt-6 text-left trail-shadow-2">
             {'Building Brand Dreams'.split(' ').map((word, i) => (
               <span key={i + 100} className="char inline-block opacity-0 mr-1 whitespace-nowrap">
                 {word}
@@ -149,7 +150,7 @@ const Hero = () => {
                   key={i + 200}
                   className={`char inline-block opacity-0 mr-1 whitespace-nowrap ${
                     isBold
-                      ? 'font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent bg-clip-text'
+                      ? 'font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent text-xl bg-clip-text'
                       : ''
                   }`}
                 >
@@ -165,6 +166,10 @@ const Hero = () => {
         </div>
       </div>
     </section>
+    <div className="absolute bottom-0 w-full h-32 z-20 bg-gradient-to-t from-zinc-900 to-transparent"></div>
+
+    </>
+    
   )
 }
 
