@@ -168,7 +168,7 @@ section {
         @apply xl:h-[70vh] md:h-[50vh] h-96 relative;
 
         img {
-          @apply w-full h-full object-contain rounded-xl absolute inset-0;
+          @apply w-full h-full object-cover rounded-xl absolute inset-0;
         }
       }
 
@@ -184,6 +184,7 @@ section {
         }
       }
     }
+   
 
     .project-list-wrapper {
       @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%];
@@ -202,33 +203,64 @@ section {
     }
   }
 
+  .perspective {
+      perspective: 1000px;
+    }
+
+  .foldable-img {
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      border-radius: 16px; /* Adjust as needed (e.g., 50% for a circle) */
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+  .char {
+    transition: all 0.3s ease-in-out;
+    will-change: transform, opacity;
+  }
+
+  .trail-shadow-1 {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+  }
+  .trail-shadow-2 {
+    text-shadow: 2px 2px 6px rgba(173, 216, 230, 0.3);
+  }
+  .trail-shadow-3 {
+    text-shadow: 3px 3px 8px rgba(255, 20, 147, 0.4);
+  }
+
+
+
   .cta-wrapper {
-    @apply relative z-20 cursor-pointer;
+    @apply relative z-20 cursor-pointer ;
   }
 
   .cta-button {
-    @apply px-4 py-4 rounded-lg bg-black-200 flex justify-center items-center relative cursor-pointer overflow-hidden;
+    @apply px-2 py-2 sm:py-2 md:py-4 rounded-lg bg-black-200 flex justify-center items-center relative cursor-pointer overflow-hidden;
 
     .bg-circle {
-      @apply absolute -right-10 origin-center top-1/2 -translate-y-1/2 
-        w-[120%] h-[120%] group-hover:size-10 group-hover:right-10
+      @apply absolute -right-3 origin-center top-1/2 -translate-y-1/2 
+        w-[100%] h-[100%] group-hover:size-10 group-hover:right-10
         rounded-full bg-white-50 transition-all duration-500;
     }
 
     .text {
-      @apply uppercase md:text-lg text-black transition-all duration-500
+      @apply uppercase text-sm sm:text-base md:text-lg text-black transition-all duration-500
         group-hover:text-white-50 group-hover:-translate-x-5 xl:translate-x-0 -translate-x-5;
     }
 
     .arrow-wrapper {
-      @apply group-hover:bg-white-50 size-10 rounded-full absolute right-10 top-1/2 
-        -translate-y-1/2 flex justify-center items-center overflow-hidden;
-
+     @apply size-10 rounded-full flex justify-center items-center overflow-hidden
+        sm:absolute sm:right-10 sm:top-1/2 sm:-translate-y-1/2
+        group-hover:bg-white-50;
       img {
         @apply size-5 xl:-translate-y-32 translate-y-0 animate-bounce group-hover:translate-y-0 transition-all duration-500;
       }
     }
   }
+
+  
 
   .card-border {
     @apply border border-black-50 bg-black-100;
