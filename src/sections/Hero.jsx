@@ -103,6 +103,7 @@ const Hero = () => {
 
   return (
     <section
+      id='hero'
       className='relative h-screen w-screen overflow-hidden'
       ref={containerRef}
     >
@@ -113,7 +114,7 @@ const Hero = () => {
           alt="Hero"
           className="foldable-img w-full h-full object-cover"
           loading="lazy" // Improves performance
-          fetchpriority="low" // Optional: hints to deprioritize loading
+          fetchPriority="low" // Optional: hints to deprioritize loading
         />
       </div>
 

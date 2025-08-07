@@ -4,6 +4,8 @@ import { navLinks } from '../constants'
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     
     useEffect(() => {
         const handleScroll = () => {
@@ -14,6 +16,10 @@ const NavBar = () => {
 
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    const handleNavClick = () => {
+        setIsMenuOpen(false); // Close menu on link click
+    };
 
   return (
     <header 
@@ -32,22 +38,55 @@ const NavBar = () => {
                                 <span className='underline'></span>
 
                             </a>
-
                         </li>
                     ))}
-
                 </ul>
-
             </nav>
 
-            <a href='#contact' className='contact-btn group'>
-                <div className='inner'>
+            {/* Mobile Toggle Button */}
+            <button
+                className="menu-toggle"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle navigation"
+                >
+                <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+            </button>
+
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+                <>
+                    <div className="menu-overlay" onClick={() => setIsMenuOpen(false)}></div>
+
+                    <div className="mobile-menu">
+                    <ul>
+                        {navLinks.map(({ link, name }) => (
+                        <li key={name}>
+                            <a href={link} onClick={handleNavClick}>
+                            {name}
+                            </a>
+                        </li>
+                        ))}
+                        <li>
+                        <a href="#contact" onClick={handleNavClick}>
+                            Let's Talk
+                        </a>
+                        </li>
+                    </ul>
+                    </div>
+                </>
+            )}
+
+            <div className="contact-btn-desktop">
+                <a href='#contact' className='contact-btn group'>
+                    <div className='inner'>
                     <span>Let's Talk</span>
-                </div>
+                    </div>
+                </a>
+            </div>
 
-            </a>
         </div>
-
     </header>
   )
 }
