@@ -29,15 +29,17 @@ const NavBar = () => {
             <a className='logo' href='#hero'>
                 <MyLogo />
             </a>
+
             <nav className='desktop'>
                 <ul>
-                    {navLinks.map(({link, name}) => (
+                    {navLinks
+                    .filter(({ name }) => name !== 'Home') // remove "Home" from desktop nav
+                    .map(({ link, name }) => (
                         <li key={name} className='group'>
-                            <a href={link}>
-                                <span>{name}</span>
-                                <span className='underline'></span>
-
-                            </a>
+                        <a href={link}>
+                            <span>{name}</span>
+                            <span className='underline'></span>
+                        </a>
                         </li>
                     ))}
                 </ul>
@@ -53,7 +55,7 @@ const NavBar = () => {
                 <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
                 <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
             </button>
-
+            
             {/* Mobile Menu */}
             {isMenuOpen && (
                 <>
@@ -62,7 +64,10 @@ const NavBar = () => {
                     <div className="mobile-menu">
                     <ul>
                         {navLinks.map(({ link, name }) => (
-                        <li key={name}>
+                        <li  
+                            key={name}
+                            className={name === 'Home' ? 'block lg:hidden' : ''}
+                        >
                             <a href={link} onClick={handleNavClick}>
                             {name}
                             </a>
@@ -85,7 +90,6 @@ const NavBar = () => {
                     </div>
                 </a>
             </div>
-
         </div>
     </header>
   )
