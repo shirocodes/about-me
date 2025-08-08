@@ -89,12 +89,12 @@ const Experience = () => {
                                             <img src={card.logoPath} alt='logo'/>
                                         </div>
                                         <div>
-                                            <h1 className='font-semibold text-3xl'>{card.title}</h1>
+                                            <h1 className='font-semibold text-2xl'>{card.title}</h1>
                                             <p className='my-2 text-white-50'>{card.date}</p>
                                             <p className='text-[#839cb5] italic'> Responsibilities</p>
                                             <ul className='list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50'>
                                                 {card.responsibilities.map((resp) => (
-                                                    <li className='text-lg' key={resp}>
+                                                    <li className='text-lg opacity-90' key={resp}>
                                                         {resp}
                                                     </li>
                                                 ))}

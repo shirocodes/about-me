@@ -54,7 +54,7 @@ const Showcase = () => {
             <div className='image-wrapper'>
               <img src={project3} alt='cancer predictive tool'/>
             </div>
-            <div className='text-content'>
+            <div className='text-content opacity-80'>
               <h2>Supporting children with autism via a behavior analyst 
                 platform with hassle-free booking for families. 
               </h2>
@@ -67,13 +67,13 @@ const Showcase = () => {
               <div className='image-wrapper bg-[#ffefdb]'>
                 <img src={project1} alt='A CLI-tool for cervical cancer prediction'/>
               </div>
-              <h2>Predict cervical cancer risk, take control.</h2>
+              <h2 className='opacity-80'>Predict cervical cancer risk, take control.</h2>
             </div>
             <div className='project' ref={work3Ref}>
               <div className='image-wrapper bg-[#ffefdb]'>
                 <img src={project2} alt='An online meeting productivity coach'/>
               </div>
-              <h2>Real-time Goal Tracking for Productive Online Meetings</h2>
+              <h2 className='opacity-80'>Real-time Goal Tracking for Productive Online Meetings</h2>
             </div>
           </div>
         </div>

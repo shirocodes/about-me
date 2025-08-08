@@ -145,6 +145,30 @@ const techStackIcons = [
 const expCards = [
   {
     summary:
+      "Led the development of a full-stack loan management platform that integrates real-time mobile payments. This project sharpened my skills in secure backend architecture and API-driven workflows.",
+    logoPath: "/images/logo.png",
+    title: "Project Lead - SokoCredit (Loan Management Platform)",
+    date: "2025",
+    responsibilities: [
+    "Coordinated a small agile team to design and deliver secure APIs using Flask, PostgreSQL, and JWT-based auth.",
+    "Integrated M-Pesa and PayPal APIs for real-time microloan processing, ensuring input validation and error handling.",
+    "Led development sprints and introduced CI/CD with Docker and GitHub Actions to streamline collaboration and deployment.",
+    ],
+  },
+  {
+    summary:
+      "This project deepened my understanding of user behavior and helped me create software that empowers people to be intentional with their time.",
+    logoPath: "/images/logo.png",
+    title: "Full Stack Developer - Aligna (Productivity App)",
+    date: "2025",
+    responsibilities: [
+      "Built frontend with React and backend using Flask + SQLAlchemy.",
+      "Designed features to link goals with live meeting sessions.",
+      "Implemented authentication and database schema design.",
+    ],
+  },
+  {
+    summary:
       "This role sparked my transition into software development as I worked closely with engineers and led projects from idea to delivery.",
     logoPath: "/images/logo.png",
     title: "Freelance Technical Project Manager",
@@ -167,31 +191,8 @@ const expCards = [
       "Specialized in turning abstract ideas into structured, clear content.",
     ],
   },
-  {
-    summary:
-      "Leading this collaborative Python project allowed me to apply Agile practices and hands-on backend dev work in a fun, team-driven setting.",
-    logoPath: "/images/logo.png",
-    title: "Scrum Lead & Backend Dev - Monster Battle CLI Game",
-    date: "2024",
-    responsibilities: [
-      "Led a dev team using Agile sprints and daily standups.",
-      "Built game logic and database models using SQLAlchemy.",
-      "Facilitated retrospectives and improved team collaboration.",
-    ],
-  },
-  {
-    summary:
-      "This project deepened my understanding of user behavior and helped me create software that empowers people to be intentional with their time.",
-    logoPath: "/images/logo.png",
-    title: "Full Stack Developer - Aligna (Productivity App)",
-    date: "2024",
-    responsibilities: [
-      "Built frontend with React and backend using Flask + SQLAlchemy.",
-      "Designed features to link goals with live meeting sessions.",
-      "Implemented authentication and database schema design.",
-    ],
-  },
 ];
+
 
 
 const expLogos = [

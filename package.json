@@ -10,16 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.2",
+    "@lottiefiles/dotlottie-react": "^0.14.4",
     "@react-three/drei": "^10.5.1",
     "@react-three/fiber": "^9.2.0",
     "@react-three/postprocessing": "^3.0.4",
     "@tailwindcss/vite": "^4.1.11",
+    "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
-    "react": "^19.1.0",
+    "lottie-react": "^2.4.1",
+    "react": "^19.1.1",
     "react-countup": "^6.5.3",
-    "react-dom": "^19.1.0",
+    "react-dom": "^19.1.1",
     "react-responsive": "^10.0.1",
+    "responsive": "^2.0.0",
     "tailwindcss": "^4.1.11",
     "three": "^0.178.0"
   },
