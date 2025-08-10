@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect} from 'react'
 import Button from '../components/Button'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -9,90 +9,116 @@ gsap.registerPlugin(MotionPathPlugin)
 const Hero = () => {
   const containerRef = useRef(null)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setIsMobile(window.innerWidth < 768)
+
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const onMQChange = (e) => setPrefersReducedMotion(!!e.matches)
+    setPrefersReducedMotion(!!mq.matches)
+
+    // modern addEventListener for MediaQueryList, fallback for older
+    if (mq.addEventListener) mq.addEventListener('change', onMQChange)
+    else mq.addListener(onMQChange)
+
+    const onResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener('change', onMQChange)
+      else mq.removeListener(onMQChange)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [])
 
   useGSAP(() => {
-    if (!imageLoaded) return // Do not start animations until image is ready
+    if (!imageLoaded) return
+
+    let rafId = null
+    let timeoutId = null
 
     const ctx = gsap.context(() => {
-      // Image floating effect
-      gsap.to('.foldable-img', {
-        y: () => gsap.utils.random(-18, 18),
-        rotation: () => gsap.utils.random(0.5, 0.5),
-        scaleX: () => gsap.utils.random(0.96, 1.04),
-        scaleY: () => gsap.utils.random(0.98, 1.02),
-        duration: 2.5,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
+      // Defer animations just slightly so the browser gets a chance to paint
+      rafId = requestAnimationFrame(() => {
+        timeoutId = setTimeout(() => {
+          // Floating image effect — only on non-mobile and when not reduced motion
+          if (!isMobile && !prefersReducedMotion) {
+            gsap.to('.foldable-img', {
+              y: () => gsap.utils.random(-10, 10),
+              rotation: () => gsap.utils.random(-0.6, 0.6),
+              scaleX: () => gsap.utils.random(0.995, 1.01),
+              scaleY: () => gsap.utils.random(0.995, 1.01),
+              duration: 3,
+              ease: 'sine.inOut',
+              repeat: -1,
+              yoyo: true,
+              // ensure transforms (composited) only
+            })
+          } else {
+            // Set to final state for mobile/reduced motion
+            gsap.set('.foldable-img', { scale: 1, rotation: 0 })
+          }
+
+          // Animate text with transforms only (no opacity/color), so text is painted instantly
+          const baseDuration = isMobile ? 0.6 : 0.9
+          const staggerBase = isMobile ? 0.03 : 0.05
+
+          const tl = gsap.timeline()
+          tl.fromTo(
+            '.line-1 .char',
+            { y: 24, scale: 0.98 },
+            { y: 0, scale: 1, duration: baseDuration, ease: 'power3.out', stagger: staggerBase }
+          )
+          tl.fromTo(
+            '.line-2 .char',
+            { y: 30, scale: 0.985 },
+            { y: 0, scale: 1, duration: baseDuration, ease: 'back.out(1.4)', stagger: staggerBase },
+            '+=0.08'
+          )
+          tl.fromTo(
+            '.line-3 .char',
+            { y: 36, scale: 0.99 },
+            { y: 0, scale: 1, duration: baseDuration + 0.1, ease: 'elastic.out(1, 0.4)', stagger: staggerBase },
+            '+=0.08'
+          )
+        }, 80) // short delay after RAF
       })
-
-      const tl = gsap.timeline()
-
-      tl.fromTo('.line-1 .char',
-        { opacity: 0, y: 20, scale: 0.8 },
-        { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power3.out', stagger: 0.05 }
-      )
-      tl.fromTo('.line-2 .char',
-        { opacity: 0, y: 30, skewX: 10, scale: 0.9 },
-        { opacity: 1, y: 0, skewX: 0, scale: 1.1, duration: 1.2, ease: 'back.out(1.5)', stagger: 0.06 },
-        '+=0.3'
-      )
-      tl.fromTo('.line-3 .char',
-        { opacity: 0, y: 40, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1.2, duration: 1.3, ease: 'elastic.out(1, 0.4)', stagger: 0.07 },
-        '+=0.3'
-      )
-      // Subtle flicker/glitch
-      gsap.fromTo(
-        '.char',
-        {
-          y: () => gsap.utils.random(-1, 1),
-          x: () => gsap.utils.random(-1, 1),
-          color: '#ff00cc'
-        },
-        {
-          color: '',
-          x: 0,
-          y: 0,
-          duration: 0.2,
-          ease: 'expo.out',
-          delay: 0.5,
-          stagger: { each: 0.06, from: 'start' },
-        }
-      )
-
     }, containerRef)
 
-    return () => ctx.revert()
-  }, [imageLoaded]) // Re-run GSAP only after imageLoaded is true
-
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      if (timeoutId) clearTimeout(timeoutId)
+      ctx.revert()
+    }
+  }, [imageLoaded, isMobile, prefersReducedMotion])
+  
   return (
     <>
       <section
         id="hero"
         className="relative h-screen w-screen overflow-hidden"
         ref={containerRef}
-        style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.8s ease' }}
       >
-         {/* Blurred background (always visible instantly) */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/backimage.png"
-            alt="Hero blurred"
-            className="w-full h-full object-cover filter blur-lg scale-105"
-            aria-hidden="true"
-          />
-        </div>
-
+      
         <div 
-          className="image-wrapper perspective absolute inset-0 z-10">
-          
+          className="image-wrapper perspective absolute inset-0 z-10">      
           <img
-            src="/images/backimage.png"
+            src="/images/backimage-1200.webp"
+            srcSet="/images/backimage-480.webp 480w, /images/backimage-768.webp 768w, /images/backimage-1200.webp 1200w"
+            sizes="(max-width: 768px) 100vw, 1200px"
             alt="Hero"
-            className="foldable-img w-full h-full object-cover"
+            className={`foldable-img w-full h-full object-cover transition-[filter,transform] duration-700 ease-out`}
+            style={{
+              filter: imageLoaded ? 'blur(0px)' : 'blur(10px)',
+              transform: imageLoaded ? 'scale(1)' : 'scale(1.05)',
+              transformOrigin: 'center center',
+              willChange: 'transform, opacity',
+            }}
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             onLoad={() => setImageLoaded(true)} // Trigger when fully loaded
           />
         </div>
@@ -102,12 +128,16 @@ const Hero = () => {
           <div className="headline text-white font-bold leading-snug sm:leading-tight">
             <div className="line line-1 text-lg sm:text-4xl md:text-5xl text-left">
               {'A Software Developer'.split(' ').map((word, i) => (
-                <span key={i} className="char inline-block opacity-0 mr-1">{word}</span>
+                <span key={i} className="char inline-block mr-1" style={{ willChange: 'transform' }}>
+                  {word}
+                </span>
               ))}
             </div>
             <div className="line line-2 text-base sm:text-3xl md:text-4xl mt-6 text-left">
               {'Building Brand Dreams'.split(' ').map((word, i) => (
-                <span key={i + 100} className="char inline-block opacity-0 mr-1">{word}</span>
+                <span key={i + 100} className="char inline-block mr-1" style={{ willChange: 'transform' }}>
+                  {word}
+                </span>
               ))}
             </div>
 
@@ -117,11 +147,8 @@ const Hero = () => {
                   return (
                     <span
                       key={i + 200}
-                      className={`char inline-block opacity-0 mr-1 whitespace-nowrap ${
-                        isBold
-                          ? 'font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent text-xl bg-clip-text'
-                          : ''
-                      }`}
+                      className={`char inline-block mr-1 whitespace-nowrap ${isBold ? 'font-extrabold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent text-xl bg-clip-text' : ''}`}
+                      style={{ willChange: 'transform' }}
                     >
                       {word}
                     </span>
@@ -134,7 +161,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
-      <div className="absolute bottom-0 w-full h-32 z-20 bg-gradient-to-t from-zinc-900 to-transparent"></div>
+      {/* <div className="absolute bottom-0 w-full h-6 sm:h-32 z-20 bg-gradient-to-t from-zinc-900 to-transparent pointer-events-none"></div> */}
     </>
   )
 }
