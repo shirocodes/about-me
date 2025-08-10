@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useRef}from 'react'
 import Heading from '../components/Heading'
 import { expCards } from '../constants'
 import GlowCard from '../components/GlowCard'
@@ -12,48 +12,50 @@ gsap.registerPlugin(ScrollTrigger)
 const Experience = () => {
 
     useGSAP(() => {
-        gsap.utils.toArray('.timeline-card').forEach((card) => {
-            gsap.from(card, {
-                xPercent: -100,
-                opacity: 0,
-                transformOrigin: 'left left',
-                duration: 1,
-                ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: card,
-                    start:'top 80%'
-                }
-            })
-        })  
-        
-        gsap.to('.timeline', {
-            transformOrigin: 'bottom bottom',
-            ease: 'power1.inOut',
-            scrollTrigger: {
-                trigger: '.timeline',
-                start: 'top center',
-                end: '70% center',
-                onUpdate: (self) => {
-                gsap.to('.timeline', {
-                    scaleY: 1 - self.progress,
-                })
-            }
-            },     
-        })
+    // 1Batch animation for .timeline-card to reduce number of ScrollTrigger instances
+    ScrollTrigger.batch(".timeline-card", {
+        start: "top 80%",
+        onEnter: (batch) => {
+        gsap.from(batch, {
+            xPercent: -100,
+            opacity: 0,
+            transformOrigin: "left left",
+            duration: 0.8, // slightly shorter for mobile snappiness
+            ease: "power2.inOut",
+            stagger: 0.1 // small delay between cards for smoothness
+        });
+        }
+    });
 
-        gsap.utils.toArray('.expText').forEach((text) => {
-            gsap.from(text, {
-                xPercent: 0,
-                opacity: 0,
-                duration: 1,
-                ease: 'power2.inOut',
-                scrollTrigger: {
-                    trigger: text,
-                    start:'top 60%'
-                }
-            })
-        }) 
-    }, [])
+    // Timeline scaling optimized — using gsap.set instead of gsap.to inside onUpdate
+    gsap.set(".timeline", { transformOrigin: "bottom bottom" }); // set once
+
+    ScrollTrigger.create({
+        trigger: ".timeline",
+        start: "top center",
+        end: "70% center",
+        onUpdate: (self) => {
+        // Directly set the scale without creating new tweens each scroll tick
+        gsap.set(".timeline", { scaleY: 1 - self.progress });
+        }
+    });
+
+    // Batch animation for .expText as well
+    ScrollTrigger.batch(".expText", {
+        start: "top 60%",
+        onEnter: (batch) => {
+        gsap.from(batch, {
+            xPercent: 0,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.inOut",
+            stagger: 0.1
+        });
+        }
+    });
+    // Performance hint: prepare GPU layers for smoother transforms
+    gsap.set([".timeline-card", ".expText", ".timeline"], { willChange: "transform, opacity" });
+    }, []);
 
   return (
     <section 
@@ -86,7 +88,7 @@ const Experience = () => {
 
                                     <div className='expText flex xl:gap-8 md:gap-4 gap-2 relative z-20'>
                                         <div className='timeline-logo'>
-                                            <img src={card.logoPath} alt='logo'/>
+                                            <img src={card.logoPath} alt='logo' loading="lazy" decoding="async"/>
                                         </div>
                                         <div>
                                             <h1 className='font-semibold text-2xl'>{card.title}</h1>
@@ -98,12 +100,9 @@ const Experience = () => {
                                                         {resp}
                                                     </li>
                                                 ))}
-
                                             </ul>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>   
                         </div>

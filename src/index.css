@@ -404,8 +404,6 @@ section {
     }
   }
 
-  
-
   .card-border {
     @apply border border-black-50 bg-black-100;
   }
@@ -650,3 +648,4 @@ section {
 .card:hover::before {
   opacity: 1;
 }
+
