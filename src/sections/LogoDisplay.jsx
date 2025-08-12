@@ -3,7 +3,7 @@ import React from "react";
 const MyLogo = () => {
   return (
     <div className="flex items-center gap-1">
-      <span className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-purple-900 bg-clip-text text-transparent">
+      <span className="text-2xl font-semibold bg-gradient-to-r from-purple-500 via-pink-400 to-purple-900 bg-clip-text text-transparent">
         W
       </span>
       <h1 className="text-lg font-[Pacifico] font-semibold relative">

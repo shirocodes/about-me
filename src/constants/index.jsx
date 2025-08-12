@@ -146,7 +146,7 @@ const expCards = [
   {
     summary:
       "Led the development of a full-stack loan management platform that integrates real-time mobile payments. This project sharpened my skills in secure backend architecture and API-driven workflows.",
-    logoPath: "/images/logo.png",
+    logoPath: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_50,f_auto,q_auto/v1755005965/logo_k4aqbj.png",
     title: "Project Lead - SokoCredit (Loan Management Platform)",
     date: "2025",
     responsibilities: [
@@ -158,7 +158,7 @@ const expCards = [
   {
     summary:
       "This project deepened my understanding of user behavior and helped me create software that empowers people to be intentional with their time.",
-    logoPath: "/images/logo.png",
+    logoPath: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_50,f_auto,q_auto/v1755005965/logo_k4aqbj.png",
     title: "Full Stack Developer - Aligna (Productivity App)",
     date: "2025",
     responsibilities: [
@@ -170,7 +170,7 @@ const expCards = [
   {
     summary:
       "This role sparked my transition into software development as I worked closely with engineers and led projects from idea to delivery.",
-    logoPath: "/images/logo.png",
+    logoPath: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_50,f_auto,q_auto/v1755005965/logo_k4aqbj.png",
     title: "Freelance Technical Project Manager",
     date: "Feb 2022 - Mar 2024",
     responsibilities: [
@@ -182,7 +182,7 @@ const expCards = [
   {
     summary:
       "This role built my foundation in breaking down complex topics — a skill I now use in dev writing and documentation.",
-    logoPath: "/images/logo.png",
+   logoPath: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_50,f_auto,q_auto/v1755005965/logo_k4aqbj.png",
     title: "Freelance Technical Writer & Research Consultant",
     date: "Feb 2020 - Feb 2022",
     responsibilities: [
@@ -190,68 +190,6 @@ const expCards = [
       "Designed interactive visuals to simplify complex findings.",
       "Specialized in turning abstract ideas into structured, clear content.",
     ],
-  },
-];
-
-
-
-const expLogos = [
-  {
-    name: "logo1",
-    imgPath: "/images/logo1.png",
-  },
-  {
-    name: "logo2",
-    imgPath: "/images/logo2.png",
-  },
-  {
-    name: "logo3",
-    imgPath: "/images/logo3.png",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
-    review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
-    imgPath: "/images/client1.png",
-  },
-  {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
-    review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
-    imgPath: "/images/client3.png",
-  },
-  {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
-    review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    imgPath: "/images/client2.png",
-  },
-  {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
-    review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-    imgPath: "/images/client5.png",
-  },
-  {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
-    review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
-    imgPath: "/images/client4.png",
-  },
-  {
-    name: "Albert Flores",
-    mentions: "@albertflores",
-    review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
-    imgPath: "/images/client6.png",
   },
 ];
 
@@ -279,8 +217,6 @@ export {
   logoIconsList,
   counterItems,
   expCards,
-  expLogos,
-  testimonials,
   socialImgs,
   techStackIcons,
   techStackImgs,
