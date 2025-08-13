@@ -442,6 +442,12 @@ section {
     @apply flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between ;
   }
 
+  .expText {
+  opacity: 1;
+  transform: none;
+}
+
+
   .gradient-edge {
     @apply w-36 h-full absolute bottom-0 z-20;
   }
@@ -672,10 +678,33 @@ section {
   filter: blur(8px) saturate(200%); 
 }
 
+/* Desktop hover glow */
 .card:hover::before {
   opacity: 1;
 }
+/* Disable hover glow on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover::before {
+    opacity: 0; /* no persistent hover glow */
+  }
+}
 
+/* Tap pulse glow effect for mobile */
+.tap-glow::before {
+  opacity: 1 !important;
+  animation: tapPulse 0.4s ease-out forwards;
+}
+
+@keyframes tapPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+}
 
 @media (max-width: 768px) {
   .glow {
