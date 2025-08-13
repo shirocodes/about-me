@@ -11,43 +11,50 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
   useGSAP(() => {
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  /** 
-   * 1. GPU acceleration hinting:
-   * - Instead of setting `will-change` globally (which eats GPU memory),
-   *   we set it right before animating and remove it afterward.
-   * - This avoids keeping too many elements on their own layers all the time.
-   */
+  /** === Constants === */
+  const MOBILE_BREAKPOINT = 768;
+  const MOBILE_CARD_DURATION = 0.45;
+  const DESKTOP_CARD_DURATION = 0.8;
+  const CARD_STAGGER = 0.08;
+  const EXP_TEXT_DURATION = 0.8;
+  const EXP_TEXT_STAGGER = 0.05;
+  const EXP_LI_DURATION = 0.3;
+  const EXP_LI_STAGGER = 0.05;
+  const MOBILE_LOGO_DURATION = 0.35;
+  const MOBILE_LOGO_STAGGER = 0.05;
 
-  // Animate timeline cards in (reduced batch size for smoother mobile performance)
+  const isMobile = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+
+  /**
+   * 1. Timeline cards animation
+   */
   ScrollTrigger.batch('.timeline-card', {
     start: 'top 80%',
-    once: true, // only animate once for performance
-    batchMax: 2, // smaller batches = faster frame render
+    once: true,
+    batchMax: 2,
     onEnter: (batch) => {
       gsap.set(batch, { willChange: 'transform, opacity' });
       gsap.from(batch, {
         xPercent: -100,
         opacity: 0,
-        duration: isMobile ? 0.45 : 0.8, // slightly shorter for mobile
+        duration: isMobile ? MOBILE_CARD_DURATION : DESKTOP_CARD_DURATION,
         ease: 'power2.out',
-        stagger: 0.08,
-        onComplete: () => gsap.set(batch, { willChange: '' }) // clean up
+        stagger: CARD_STAGGER,
+        onComplete: () => gsap.set(batch, { willChange: '' })
       });
     }
   });
 
-  /** 
-   * 2. Timeline + logo animations:
-   * - Desktop gets scrubbed scaling; mobile gets a simple fade to avoid heavy calculations.
-   * - Avoids constantly running transform logic on mobile while scrolling.
+  /**
+   * 2. Mobile-only animations (combined block)
    */
   if (isMobile) {
+    // Mobile timeline opacity effect
     gsap.fromTo(
       '.timeline',
       { opacity: 1 },
       {
-        opacity: 1, // no actual change, keeps visual consistent
+        opacity: 1,
         scrollTrigger: {
           trigger: '.timeline',
           start: 'top bottom',
@@ -56,7 +63,25 @@ const Experience = () => {
         }
       }
     );
+
+    // Mobile logo fade-in
+    ScrollTrigger.batch('.timeline-logo', {
+      start: 'top 70%',
+      once: true,
+      onEnter: (batch) => {
+        gsap.from(batch, {
+          opacity: 0,
+          y: -10,
+          duration: MOBILE_LOGO_DURATION,
+          ease: 'power2.out',
+          stagger: MOBILE_LOGO_STAGGER
+        });
+      }
+    });
   } else {
+    /**
+     * Desktop-only animations
+     */
     gsap.set(['.timeline', '.gradient-line'], { transformOrigin: 'bottom bottom', scaleY: 1 });
     gsap.set('.timeline-logo', { transformOrigin: 'center', yPercent: 0, scale: 1 });
 
@@ -76,65 +101,38 @@ const Experience = () => {
         });
       }
     });
-  }
 
-  /** 
-   * 3. Experience text + list items:
-   * - Uses once:true to avoid re-triggering.
-   * - Will-change only applied during animation.
-   */
-  ScrollTrigger.batch('.expText', {
-    start: 'top 60%',
-    once: true,
-    onEnter: (batch) => {
-      const liElements = batch.flatMap((el) =>
-        Array.from(el.querySelectorAll('li'))
-      );
-      const textBlocks = batch.map(el => el.querySelector('div:not(.timeline-logo)'));
-
-      gsap.set(textBlocks, { willChange: 'transform, opacity' });
-      gsap.from(textBlocks, {
-        opacity: 0,
-        xPercent: isMobile ? 0 : 10,
-        duration: isMobile ? 0.45 : 0.8,
-        ease: 'power2.out',
-        stagger: 0.05,
-        onComplete: () => gsap.set(textBlocks, { willChange: '' })
-      });
-
-      gsap.from(liElements, {
-        opacity: 0,
-        y: 10,
-        duration: 0.3,
-        stagger: 0.05,
-        ease: 'power1.out',
-        delay: isMobile ? 0.25 : 0.4
-      });
-    }
-  });
-
-  /** 
-   * 4. Logo entry animation for mobile:
-   * - Runs only if mobile.
-   */
-  if (isMobile) {
-    ScrollTrigger.batch('.timeline-logo', {
-      start: 'top 70%',
+    ScrollTrigger.batch('.expText', {
+      start: 'top 60%',
       once: true,
       onEnter: (batch) => {
-        gsap.from(batch, {
+        const liElements = batch.flatMap((el) =>
+          Array.from(el.querySelectorAll('li'))
+        );
+        const textBlocks = batch.map(el => el.querySelector('div:not(.timeline-logo)'));
+
+        gsap.set(textBlocks, { willChange: 'transform, opacity' });
+        gsap.from(textBlocks, {
           opacity: 0,
-          y: -10,
-          duration: 0.35,
+          xPercent: 10,
+          duration: EXP_TEXT_DURATION,
           ease: 'power2.out',
-          stagger: 0.05
+          stagger: EXP_TEXT_STAGGER,
+          onComplete: () => gsap.set(textBlocks, { willChange: '' })
+        });
+
+        gsap.from(liElements, {
+          opacity: 0,
+          y: 10,
+          duration: EXP_LI_DURATION,
+          stagger: EXP_LI_STAGGER,
+          ease: 'power1.out',
+          delay: 0.4
         });
       }
     });
   }
-}, []);
-
-
+  }, []);
 
   return (
     <section
