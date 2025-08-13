@@ -621,8 +621,21 @@ section {
   z-index: 40;
   overflow: hidden;
   transition: border-color 1s ease-in-out;
+  transform: translateZ(0); /* Force GPU layer for GSAP transforms */
 }
 
+/* Preload star.png invisibly */
+.card::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background-image: url("/images/star.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  visibility: hidden;
+}
 .card::before {
   position: absolute;
   content: "";
@@ -634,7 +647,7 @@ section {
   border-radius: 12px;
   border: 2px solid transparent;
   background: var(--gradient);
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   mask: linear-gradient(#0000, #0000),
     conic-gradient(
       from calc((var(--start) - 15) * 1deg),
@@ -656,10 +669,16 @@ section {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  filter: blur(10px);
-  filter: saturate(200);
+  filter: blur(8px) saturate(200%); 
 }
 
 .card:hover::before {
   opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+  .glow {
+    filter: blur(6px) saturate(200%); /* lighter GPU load on mobile */
+  }
 }
