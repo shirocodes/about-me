@@ -245,52 +245,57 @@ section {
 }
 
   .app-showcase {
-    @apply w-full mt-10 px-5 md:px-20 py-10 md:py-20 flex items-center justify-center;
+  @apply w-full mt-10 px-5 md:px-20 py-10 md:py-20 flex items-center justify-center;
 
-    .showcaselayout {
-      @apply flex xl:flex-row flex-col gap-10 justify-between;
-    }
+  .showcaselayout {
+    @apply flex xl:flex-row flex-col gap-10 justify-between;
+  }
 
-    .first-project-wrapper {
-      @apply h-full flex flex-col justify-between xl:w-[60%];
+  .first-project-wrapper {
+    @apply h-full flex flex-col justify-between xl:w-[50%];
 
-      .image-wrapper {
-         @apply w-full sm:h-68 md:h-[50vh] xl:h-[70vh] relative overflow-hidden rounded-xl;
-        img {
-          @apply w-full h-full object-cover sm:object-contain;
-        }
-      }
-
-      .text-content {
-        @apply space-y-5 mt-5;
-
-        .badges {
-          @apply flex gap-2 mb-4;
-        }
-
-        h2 {
-          @apply text-lg md:text-xl lg:text-2xl font-bold;
-        }
-      }
-    }
-   
-
-    .project-list-wrapper {
-      @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%];
-
-      .image-wrapper {
-        @apply xl:h-[37vh] md:h-52 lg:h-72 h-64 relative rounded-xl xl:px-5 2xl:px-12 py-0;
-      }
-
+    .image-wrapper {
+      /* Reduced height for balance */
+      @apply w-full sm:h-56 md:h-[40vh] xl:h-[45vh] relative overflow-hidden rounded-xl;
+      
       img {
-        @apply w-full h-full object-contain rounded-xl;
+        /* Fill container on large screens, keep contain on small */
+        @apply w-full h-full object-cover sm:object-contain;
+      }
+    }
+
+    .text-content {
+      @apply space-y-5 mt-5;
+
+      .badges {
+        @apply flex gap-2 mb-4;
       }
 
       h2 {
-        @apply text-lg md:text-xl lg:text-2xl font-semibold mt-5;
+        @apply text-lg md:text-xl lg:text-2xl font-semibold;
       }
     }
   }
+
+  .project-list-wrapper {
+    @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[50%];
+
+    .image-wrapper {
+      /* Keep right images proportional and balanced */
+      @apply h-48 md:h-56 lg:h-64 xl:h-[30vh] relative rounded-xl xl:px-5 2xl:px-12 py-0;
+    }
+
+    img {
+      /* Fill container without leaving gaps */
+      @apply w-full h-full object-contain rounded-xl;
+    }
+
+    h2 {
+      @apply text-lg md:text-xl lg:text-2xl font-semibold mt-4;
+    }
+  }
+}
+
 
   /* ---- Animation / Visibility States ---- */
 .project {
