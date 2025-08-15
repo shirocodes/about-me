@@ -71,35 +71,6 @@ const LightParticlesBackground = () => {
           />
         ))
       )}
-
-      <style jsx>{`
-        .particle {
-          position: absolute;
-          border-radius: 50%;
-          opacity: 0;
-          transform: translateY(0);
-        }
-        .particle.animate {
-          animation-name: float;
-          animation-iteration-count: infinite;
-          animation-timing-function: ease-in-out;
-          opacity: 1;
-        }
-        @keyframes float {
-          0% {
-            transform: translateY(0);
-            opacity: 0.4;
-          }
-          50% {
-            transform: translateY(-20px);
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 0.4;
-          }
-        }
-      `}</style>
     </div>
   );
 };

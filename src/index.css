@@ -478,7 +478,6 @@ section {
   @apply flex justify-center items-center w-14 h-20 md:w-20 md:h-28 relative;
 }
 
-
   form {
     label {
       @apply block text-white-50 mb-2;
@@ -497,6 +496,26 @@ section {
       }
     }
   }
+
+  /* LightParticlesBackground */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(0);
+}
+.particle.animate {
+  animation-name: float;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  opacity: 1;
+}
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-20px); opacity: 0.8; }
+  100% { transform: translateY(0); opacity: 0.4; }
+}
+
 
   .footer {
   @apply my-5 text-white-50 px-5 md:px-20 xl:px-20
