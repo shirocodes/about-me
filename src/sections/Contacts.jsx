@@ -1,9 +1,7 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Heading from '../components/Heading'
-import emailjs from '@emailjs/browser'
 import {motion, AnimatePresence} from 'framer-motion'
-import Lottie from 'lottie-react'
-import PartticlesBackground from '../components/ParticlesBackgrnd.jsx'
+import LightParticlesBackground from '../components/ParticlesBackgrnd.jsx'
 
 
 const Contacts = () => {
@@ -31,6 +29,7 @@ const Contacts = () => {
       
       setLoading(true)
       try {
+        const emailjs = await import('@emailjs/browser'); // dynamically import to lazy load it
         await emailjs.sendForm(
           import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
           import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
@@ -54,7 +53,7 @@ const Contacts = () => {
 
   return ( 
     <section id='contact' className='relative w-full min-h-screen flex items-center justify-center bg-black text-white overflow-hidden'>
-      <PartticlesBackground/>
+      <LightParticlesBackground/>
       <div className='z-10 w-full max-w-xl px-5'>
         <Heading 
           title="Get in touch with me"
@@ -65,7 +64,7 @@ const Contacts = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-10 backdrop-blur-lg bg-white/10 rounded-xl shadow-xl p-8"
+          className="mt-10  bg-white/10 rounded-xl shadow-xl p-8"
         >
           <form onSubmit={handleSubmit} className='w-full flex flex-col gap-7' ref={formRef}>
                 <div>
