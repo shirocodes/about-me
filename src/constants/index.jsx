@@ -115,30 +115,35 @@ const techStackIcons = [
     modelPath: "/models/react_logo-transformed.glb",
     scale: 1,
     rotation: [0, 0, 0],
+    mobileImgUrl: 'https://res.cloudinary.com/da3jrfrrc/image/upload/w_120,h_120,c_fit,f_auto,q_auto/v1755254186/react_t5wlxg.png'
   },
   {
     name: "Python Developer",
     modelPath: "/models/python-transformed.glb",
     scale: 0.8,
     rotation: [0, 0, 0],
+    mobileImgUrl: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_120,h_120,c_fit,f_auto,q_auto/v1755252838/python_dihgrt.png"
   },
   {
     name: "Backend Developer",
     modelPath: "/models/node-transformed.glb",
     scale: 5,
     rotation: [0, -Math.PI / 2, 0],
+    mobileImgUrl: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_120,h_120,c_fit,f_auto,q_auto/v1755252840/js_xxuh4b.png"
   },
   {
     name: "Interactive Developer",
     modelPath: "/models/three.js-transformed.glb",
     scale: 0.05,
     rotation: [0, 0, 0],
+    mobileImgUrl: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_120,h_120,c_fit,f_auto,q_auto/v1755252832/interactive_dev_z63pso.png"
   },
   {
     name: "Project Manager",
     modelPath: "/models/git-svg-transformed.glb",
     scale: 0.05,
     rotation: [0, -Math.PI / 4, 0],
+    mobileImgUrl: "https://res.cloudinary.com/da3jrfrrc/image/upload/w_120,h_120,c_fit,f_auto,q_auto/v1755252838/pm_cnbnzd.png"
   },
 ];
 

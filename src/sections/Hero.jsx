@@ -9,33 +9,31 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
+  // useEffect(() => {
+  //   if (typeof window === 'undefined') return
 
-    // Use media queries so updates only happen when the condition flips
-    const mqMobile = window.matchMedia('(max-width: 767px)')
-    const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+  //   // Use media queries so updates only happen when the condition flips
+  //   const mqMobile = window.matchMedia('(max-width: 767px)')
+  //   const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-    const apply = () => {
-      setIsMobile(prev => prev !== mqMobile.matches ? mqMobile.matches : prev)
-      setPrefersReducedMotion(prev => prev !== mqReduce.matches ? mqReduce.matches : prev)
-    }
+  //   const apply = () => {
+  //     setIsMobile(prev => prev !== mqMobile.matches ? mqMobile.matches : prev)
+  //     setPrefersReducedMotion(prev => prev !== mqReduce.matches ? mqReduce.matches : prev)
+  //   }
 
-    apply()
+  //   apply()
 
-    const onMobileChange = () => setIsMobile(mqMobile.matches)
-    const onReduceChange = () => setPrefersReducedMotion(mqReduce.matches)
+  //   const onMobileChange = () => setIsMobile(mqMobile.matches)
+  //   const onReduceChange = () => setPrefersReducedMotion(mqReduce.matches)
 
-    mqMobile.addEventListener?.('change', onMobileChange) ?? mqMobile.addListener(onMobileChange)
-    mqReduce.addEventListener?.('change', onReduceChange) ?? mqReduce.addListener(onReduceChange)
+  //   mqMobile.addEventListener?.('change', onMobileChange) ?? mqMobile.addListener(onMobileChange)
+  //   mqReduce.addEventListener?.('change', onReduceChange) ?? mqReduce.addListener(onReduceChange)
 
-    return () => {
-      mqMobile.removeEventListener?.('change', onMobileChange) ?? mqMobile.removeListener(onMobileChange)
-      mqReduce.removeEventListener?.('change', onReduceChange) ?? mqReduce.removeListener(onReduceChange)
-    }
-  }, [])
-
-
+  //   return () => {
+  //     mqMobile.removeEventListener?.('change', onMobileChange) ?? mqMobile.removeListener(onMobileChange)
+  //     mqReduce.removeEventListener?.('change', onReduceChange) ?? mqReduce.removeListener(onReduceChange)
+  //   }
+  // }, [])
   useEffect(() => {
   if (typeof window === 'undefined') return
 
@@ -60,7 +58,7 @@ const Hero = () => {
     mqMobile.removeEventListener?.('change', updateMatches) ?? mqMobile.removeListener(updateMatches)
     mqReduce.removeEventListener?.('change', updateMatches) ?? mqReduce.removeListener(updateMatches)
   }
-}, [])
+  }, [])
 
   useGSAP(() => {
     if (!imageLoaded) return
