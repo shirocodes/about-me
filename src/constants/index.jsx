@@ -177,7 +177,7 @@ const expCards = [
 const socialImgs = [
   {
     name: "GitHub",
-    url: "https://github.com/shirocodes/practice-",
+    url: "https://github.com/shirocodes",
     imgPath: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
   },
   {
