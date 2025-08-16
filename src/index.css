@@ -260,16 +260,16 @@ section {
       
       img {
         /* Fill container on large screens, keep contain on small */
-        @apply w-full h-full object-cover sm:object-contain;
+        @apply w-full h-full object-fill sm:object-contain;
       }
     }
 
     .text-content {
-      @apply space-y-5 mt-5;
+      @apply space-y-5 mt-3;
 
-      .badges {
+      /* .badges {
         @apply flex gap-2 mb-4;
-      }
+      } */
 
       h2 {
         @apply text-lg md:text-xl lg:text-2xl font-semibold;
@@ -475,7 +475,7 @@ section {
   }
 
   .tech-icon-wrapper {
-  @apply flex justify-center items-center w-14 h-20 md:w-20 md:h-28 relative;
+  @apply flex justify-center items-center w-12 h-18 md:w-20 md:h-28 relative;
 }
 
   form {
